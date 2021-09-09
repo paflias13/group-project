@@ -1,3 +1,4 @@
+import { ShoppingBasket } from "@material-ui/icons";
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -16,7 +17,13 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+
 `;
+
+const Shop = styled.div`
+  border-radius: 50%;
+  border: 1px solid #000;
+`
 
 const Center = styled.div`
   flex: 1;
@@ -34,7 +41,11 @@ const NavBar = () => {
   return (
     <Container>d
       <Wrapper>
-        <Left></Left>
+        <Left>
+          <Shop>
+            <ShoppingBasket />
+          </Shop>
+        </Left>
         <Center></Center>
         <Right></Right>
       </Wrapper>
