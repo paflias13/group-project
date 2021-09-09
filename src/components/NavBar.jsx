@@ -1,4 +1,4 @@
-import { ShoppingBasket } from "@material-ui/icons";
+import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -23,7 +23,14 @@ const Left = styled.div`
 const Shop = styled.div`
   border-radius: 50%;
   border: 1px solid #000;
+  padding: 5px;
+  font-size: 12px;
+  color: #fff;
 `
+
+// const ShoppingCart = styled.icon`
+//   font-size: 12px;
+// `
 
 const Center = styled.div`
   flex: 1;
@@ -39,11 +46,11 @@ const Right = styled.div`
 
 const NavBar = () => {
   return (
-    <Container>d
+    <Container>
       <Wrapper>
         <Left>
           <Shop>
-            <ShoppingBasket />
+            <ShoppingCart />
           </Shop>
         </Left>
         <Center></Center>
