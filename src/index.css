@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-para: #777570 ;
+    --color-brown: #A36833;
+    --color-gray: grey;
+    --color-darkGreen: rgb(94, 124, 117);
+    --color-title: #4e4540;
+}
+
+html, body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    overflow-x: hidden;
+}

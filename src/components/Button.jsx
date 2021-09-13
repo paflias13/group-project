@@ -1,0 +1,34 @@
+import styled from "styled-components"
+
+const Button = ({ value }) => {
+    return (
+        <div>
+            <PrimaryButton>{value}</PrimaryButton>
+        </div>
+    )
+}
+
+const PrimaryButton = styled.button`
+    color: var(--color-para);
+    border-radius: 30px;
+    padding: 20px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    border: 3px solid var(--color-brown);
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Brandon Grotesque",sans-serif;
+
+    &:hover{
+    background-color: var(--color-brown);
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+`
+
+export default Button
