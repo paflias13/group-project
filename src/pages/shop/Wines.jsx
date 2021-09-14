@@ -1,35 +1,46 @@
 import Button from '../../components/Button'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const URL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007"
 
 const Wines = () => {
 
-    // const [wine, setWine] = useState({})
+    const [wine, setWine] = useState([])
+    const { search } = useLocation()
 
 
-    // useEffect(() => {
-    //     const fetchWines = async () => {
-    //         const res = await axios.get(URL)
-    //         // console.log(res.data)
-    //     }
-    //     fetchWines()
-    // }, [wine])
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const res = await axios.get(URL + search)
+            setWine(res.data)
+        }
+        fetchPosts()
+    }, [search])
 
 
     return (
         <Container>
-            {/* {Object.values(wine[0]).map(w => (
-                <Wrapper>
-                    <Image src={console.log(w)} />
-                    <Title>Morrito Pinot Noir </Title>
+            {Object.values(wine).map((arr, index) => Object.values(arr).map(wine => (
+                <Wrapper key={index}>
+                    <Image src={wine.strImageSource} />
+                    {console.log(wine)}
+                    <Title>{wine.idDrink} </Title>
                     <Info>edna valley 2018</Info>
-
                     <Button value="LEARN MORE" />
                 </Wrapper>
-            ))} */}
+            )))}
+            {/* <Link to="/product">
+                <Wrapper>
+                    <Image src='https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png"' />
+                    <Title>Morrito Pinot Noir </Title>
+                    <Info>edna valley 2018</Info>
+                    <Button value="LEARN MORE" />
+                </Wrapper>
+            </Link>
             <Wrapper>
                 <Image src='https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png"' />
                 <Title>Morrito Pinot Noir </Title>
@@ -59,13 +70,7 @@ const Wines = () => {
                 <Title>Morrito Pinot Noir </Title>
                 <Info>edna valley 2018</Info>
                 <Button value="LEARN MORE" />
-            </Wrapper>
-            <Wrapper>
-                <Image src='https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png"' />
-                <Title>Morrito Pinot Noir </Title>
-                <Info>edna valley 2018</Info>
-                <Button value="LEARN MORE" />
-            </Wrapper>
+            </Wrapper> */}
         </Container>
     )
 }

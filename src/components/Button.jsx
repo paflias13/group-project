@@ -22,7 +22,6 @@ const PrimaryButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Brandon Grotesque",sans-serif;
 
     &:hover{
     background-color: var(--color-brown);
