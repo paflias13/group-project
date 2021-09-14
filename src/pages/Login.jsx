@@ -1,4 +1,5 @@
 // import { Input } from '@material-ui/core'
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
 
 const Login = () => {
@@ -11,12 +12,15 @@ const Login = () => {
                     <Span>log in</Span>
                 </Infos>
                 <Form onSubmit="">
-                    <Label>*username</Label>
+                    <Label className="success error">*username</Label>
                     <Input type="text" />
-                    <Label>*password</Label>
+                    <Label className="success error">*password</Label>
                     <Input type="password" />
                     <Button type="submit" onClick="">log in</Button>
                 </Form>
+                <LinkForSign>
+                    <Link to="/registration">Sign up for an account</Link>
+                </LinkForSign>
             </Container>
         </BackImage>
     )
@@ -123,6 +127,10 @@ const Button = styled.button`
         color: #fff;
         background-color: var(--color-brown);
     }
+`
+
+const LinkForSign = styled.div`
+    margin-top: 10px;
 `
 
 export default Login

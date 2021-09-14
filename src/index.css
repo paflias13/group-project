@@ -38,6 +38,13 @@ html, body {
 
 a {
     margin-left: 10px;
-    text-decoration: none;
     color: #3f8079;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
 }

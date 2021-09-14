@@ -1,7 +1,7 @@
 import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../index.css'
 
 const Container = styled.div`
