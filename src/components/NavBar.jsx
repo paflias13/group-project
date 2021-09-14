@@ -1,9 +1,12 @@
 import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import '../index.css'
 
 const Container = styled.div`
   height: 60px;
-  background-color: green;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const Wrapper = styled.div`
@@ -17,20 +20,10 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-
 `;
 
 const Shop = styled.div`
-  border-radius: 50%;
-  border: 1px solid #000;
-  padding: 5px;
-  font-size: 12px;
-  color: #fff;
 `
-
-// const ShoppingCart = styled.icon`
-//   font-size: 12px;
-// `
 
 const Center = styled.div`
   flex: 1;
@@ -51,6 +44,10 @@ const NavBar = () => {
           <Shop>
             <ShoppingCart />
           </Shop>
+          <a href="/">home</a>
+          <a href="/shop">shop</a>
+          <a href="/login">login</a>
+          <a href="/registration">registration</a>
         </Left>
         <Center></Center>
         <Right></Right>

@@ -31,7 +31,6 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-    margin-top: 200px;
     margin-bottom: 150px;
     border-right: 1px solid #d4d0c3;
     padding: 30px;

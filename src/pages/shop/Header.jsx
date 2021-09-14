@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 const Header = () => {
     return (
         <Container>
-            <Image src="https://chamisalvineyards.com/wp-content/uploads/2018/08/shop_main_background.png" />
+            <Image />
             <HeaderWrapper>
                 <Title>Shop Central Coast Wines</Title>
                 <Para>Ground shipping is included on purchases of 12 bottles or more. Flat rate applies for AK, HI, NJ, OH & PR.</Para>
@@ -35,16 +35,17 @@ const Container = styled.div`
     position: relative;
 `
 
-const Image = styled.img`
+const Image = styled.div`
+    transform: matrix(1, 0, 0, 1, 0, 93);
+    background-image: url("https://chamisalvineyards.com/wp-content/uploads/2018/08/shop_main_background.png");
+    background-position: center bottom;
     width: 100%;
     height: 90vh;
-    object-fit: fill;
-    transform: matrix(1, 0, 0, 1, 0, 93);
 `
 
 const HeaderWrapper = styled.div`
     position: absolute;
-    top: 200px;
+    top: 150px;
     left: 100px;
 `
 
@@ -75,16 +76,16 @@ const Para = styled.p`
 const Feelings = styled.div`
     width: 450px;
     height: 200px;
+    margin: 0 auto;
     background-color: #fff;
     opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    bottom: -140px;
-    left: 35%;
     box-shadow: 1px 1px 6px #000;
+    position: relative;
+    top: -100px;
 `
 
 const Name = styled.label`
@@ -111,7 +112,11 @@ const Select = styled.select`
 `
 
 const Option = styled.option`
-    background-color: aqua;
+    color: rgba(0, 0, 0, 0.3);
+
+    &:hover{
+        color: rgba(0, 0, 0, 0.8);
+    }
 `
 
 export default Header

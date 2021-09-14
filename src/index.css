@@ -7,12 +7,37 @@
 :root {
     --color-para: #777570 ;
     --color-brown: #A36833;
-    --color-gray: grey;
+    --color-gray: rgba(128, 128, 128, 0.543);
     --color-darkGreen: rgb(94, 124, 117);
     --color-title: #4e4540;
+    --color-date: #3f8079;
 }
 
 html, body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+.arrow {
+    position: absolute;
+    left: 30px;
+    top: 80px;
+    cursor: pointer;
+    color: #000;
+}
+
+.actionButton {
+    margin-left: 20px;
+    background-color: #3f8079;
+}
+
+a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #3f8079;
 }

@@ -2,6 +2,8 @@ import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Product from './components/Product';
 
@@ -20,6 +22,12 @@ function App() {
           </Route>
           <Route path="/product" >
             <Product />
+          </Route>
+          <Route path="/login" >
+            <Login />
+          </Route>
+          <Route path="/registration" >
+            <Registration />
           </Route>
         </Switch>
       </Router>

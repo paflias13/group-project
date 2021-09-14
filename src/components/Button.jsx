@@ -11,9 +11,9 @@ const Button = ({ value }) => {
 const PrimaryButton = styled.button`
     color: var(--color-para);
     border-radius: 30px;
-    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     height: 35px;
-    width: 120px;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.7px;
