@@ -1,5 +1,5 @@
 import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components"
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../index.css'
@@ -44,10 +44,12 @@ const NavBar = () => {
           <Shop>
             <ShoppingCart />
           </Shop>
+          {/* <Link to={"/shop"}>shop</Link> */}
           <a href="/">home</a>
           <a href="/shop">shop</a>
           <a href="/login">login</a>
           <a href="/registration">registration</a>
+          <a href="/add">add</a>
         </Left>
         <Center></Center>
         <Right></Right>
