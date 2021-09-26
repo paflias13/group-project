@@ -41,6 +41,15 @@ a {
     color: #3f8079;
 }
 
+a:hover {
+    color: #7da3a0;
+}
+
+.StripeElement {
+	width: 100%;
+	padding: 11px 15px 11px 0;
+}
+
 .success {
     color: green;
 }

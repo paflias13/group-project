@@ -50,6 +50,7 @@ const NavBar = () => {
           <a href="/login">login</a>
           <a href="/registration">registration</a>
           <a href="/add">add</a>
+          <a href="/basket">basket</a>
         </Left>
         <Center></Center>
         <Right></Right>

@@ -18,9 +18,10 @@ const Login = () => {
                     <Input type="password" />
                     <Button type="submit" onClick="">log in</Button>
                 </Form>
-                <LinkForSign>
-                    <Link to="/registration">Sign up for an account</Link>
-                </LinkForSign>
+                <LinksForActions>
+                    <Link style={links} to="/forgotPassword">Forgot your username or password? </Link>
+                    <Link style={links} to="/registration">Sign up for an account</Link>
+                </LinksForActions>
             </Container>
         </BackImage>
     )
@@ -45,6 +46,7 @@ const Container = styled.div`
 `
 
 const Infos = styled.div``
+
 const Title = styled.h1`
     color: var(--color-title);
     font-size: 45px;
@@ -110,7 +112,6 @@ const Input = styled.input`
 const Button = styled.button`
     width: 40%;
     margin-top: 30px;
-    /* height: 30px; */
     border: 3px solid var(--color-brown);
     background-color: #fff;
     border-radius: 25px;
@@ -129,8 +130,14 @@ const Button = styled.button`
     }
 `
 
-const LinkForSign = styled.div`
-    margin-top: 10px;
+const LinksForActions = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 `
+
+const links = {
+    marginBottom: '10px'
+}
 
 export default Login

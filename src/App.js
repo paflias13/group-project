@@ -7,6 +7,10 @@ import Registration from './pages/Registration';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Product from './components/Product';
 import AddProduct from './admin/AddProduct';
+import ShoppingCart from './components/ShoppingCart';
+import ForgotPassword from './pages/ForgotPassword';
+import NotFound from './components/NotFound';
+import EditProduct from './admin/EditProduct';
 
 function App() {
   return (
@@ -32,6 +36,18 @@ function App() {
           </Route>
           <Route path="/add" >
             <AddProduct />
+          </Route>
+          <Route path="/edit" >
+            <EditProduct />
+          </Route>
+          <Route path="/basket" >
+            <ShoppingCart />
+          </Route>
+          <Route path="/forgotPassword" >
+            <ForgotPassword />
+          </Route>
+          <Route path="/*" >
+            <NotFound />
           </Route>
         </Switch>
       </Router>

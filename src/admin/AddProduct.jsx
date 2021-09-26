@@ -28,7 +28,7 @@ const AddProduct = () => {
                         <Input type="text" placeholder="Title" autoFocus={true} />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="date" placeholder="Date" autoFocus={true} />
+                        <Input type="number" placeholder="Year" autoFocus={true} />
                     </WriteFormGroup>
                     <WriteFormGroup>
                         <Input type="number" placeholder="Price" autoFocus={true} />
