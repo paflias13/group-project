@@ -2,17 +2,46 @@ import styled from "styled-components"
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useHistory, useLocation } from "react-router";
 // import WineRouge from '../../public/images/home_wine_1_compressed.jpg'
 
-const URL = 'http://localhost:8000/blogs'
+const PF = "http://localhost:5000/vineyards/products"
 
 const AddProduct = () => {
+
+    const [title, setTitle] = useState("")
+    const [year, setYear] = useState("")
+    const [price, setPrice] = useState("")
+    const [alcohol, setAlcohol] = useState("")
+    const [aroma, setAroma] = useState("")
+    const [flavor, setFlavor] = useState("")
+    const [finish, setFinish] = useState("")
+    // const location = useLocation()
+    // const path = location.pathname.split("/")[2]
+    const history = useHistory()
+
+
+
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const wine = { title, year, price, alcohol, aroma, flavor, finish }
+
+        fetch(PF, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(wine)
+        }).then(() => {
+            console.log('new wine added')
+            history.push('/shop')
+        })
+    }
 
     return (
         <BackgroundPhoto>
             <Container>
-                <WineImage src="https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png" />
-                <Form onSubmit="">
+                {/* <WineImage src="https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png" /> */}
+                <Form onSubmit={handleSubmit}>
                     <WriteFormGroup>
                         <LabelPlus htmlFor="fileInput">
                             <BackgroundCircle>
@@ -22,28 +51,81 @@ const AddProduct = () => {
                         </LabelPlus>
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <InputFile type="file" id="fileInput" />
+                        <InputFile
+                            type="file"
+                            id="fileInput"
+                        // required
+                        // value={title}
+                        // onChange={e => setTitle(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="text" placeholder="Title" autoFocus={true} />
+                        <Input
+                            type="text"
+                            placeholder="Title"
+                            autoFocus={true}
+                            required
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="number" placeholder="Year" autoFocus={true} />
+                        <Input
+                            type="number"
+                            placeholder="Year"
+                            autoFocus={true}
+                            required
+                            value={year}
+                            onChange={e => setYear(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="number" placeholder="Price" autoFocus={true} />
+                        <Input
+                            type="number"
+                            placeholder="Price"
+                            autoFocus={true}
+                            required
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="number" placeholder="Alcohol" autoFocus={true} />
+                        <Input
+                            type="text"
+                            placeholder="Alcohol"
+                            autoFocus={true}
+                            required
+                            value={alcohol}
+                            onChange={e => setAlcohol(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="text" placeholder="Aroma" autoFocus={true} />
+                        <Input
+                            type="text"
+                            placeholder="Aroma"
+                            autoFocus={true}
+                            required
+                            value={aroma}
+                            onChange={e => setAroma(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="text" placeholder="Flavor" autoFocus={true} />
+                        <Input
+                            type="text"
+                            placeholder="Flavor"
+                            autoFocus={true}
+                            value={flavor}
+                            onChange={e => setFlavor(e.target.value)}
+                        />
                     </WriteFormGroup>
                     <WriteFormGroup>
-                        <Input type="text" placeholder="Finish" autoFocus={true} />
+                        <Input
+                            type="text"
+                            placeholder="Finish"
+                            autoFocus={true}
+                            value={finish}
+                            onChange={e => setFinish(e.target.value)}
+                        />
                     </WriteFormGroup>
 
                     <Button type="submit">Publish</Button>

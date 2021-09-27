@@ -2,16 +2,14 @@ import styled from "styled-components"
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router";
-
-const URL = 'http://localhost:8000/blogs/'
+import { useHistory, useLocation } from "react-router";
 
 const EditProduct = () => {
     const location = useLocation()
     const path = location.pathname.split("/")[2]
     const id = location.state?.wineId
     const [wine, setWine] = useState([])
-    const PF = "http://localhost:8000/blogs"
+    const PF = "http://localhost:5000/vineyards/products"
     // const { user } = useContext(Context)
     const [title, setTitle] = useState("")
     const [year, setYear] = useState("")
@@ -21,41 +19,27 @@ const EditProduct = () => {
     const [flavor, setFlavor] = useState("")
     const [finish, setFinish] = useState("")
     const [updateMode, setUpdateMode] = useState(false)
+    const history = useHistory()
 
-    // const product = wine.find(p => p.id == id)
-    console.log(id)
+
+    // fix error with message!!!!!!!
+
 
     useEffect(() => {
-        fetchData()
-    })
-
-    const fetchData = async () => {
-        try {
-            const res = await axios.get(URL)
+        const fetchWine = async () => {
+            const res = await axios.get(`${PF}/${path}`)
             console.log(res)
-            // setWine(res)
-        } catch (error) {
-            console.log('Wrong data')
+            setWine(res.data.data.data)
+            setTitle(res.data.data.data.title)
+            setYear(res.data.data.data.year)
+            setPrice(res.data.data.data.price)
+            setAlcohol(res.data.data.data.alcohol)
+            setAroma(res.data.data.data.aroma)
+            setFlavor(res.data.data.data.flavor)
+            setFinish(res.data.data.data.finish)
         }
-    }
-
-
-
-
-    // useEffect(() => {
-    //     const fetchWine = async () => {
-    //         const res = await axios.get(PF + path)
-    //         setWine(res.data)
-    //         setTitle(res.data.title)
-    //         setYear(res.data.desc)
-    //         setPrice(res.data.desc)
-    //         setAlcohol(res.data.desc)
-    //         setAroma(res.data.desc)
-    //         setFlavor(res.data.desc)
-    //         setFinish(res.data.desc)
-    //     }
-    //     fetchWine()
-    // }, [path])
+        fetchWine()
+    }, [path])
 
 
     // const handleDelete = async () => {
@@ -76,8 +60,18 @@ const EditProduct = () => {
     //     }
     // }
 
-    const handleSubmit = e => {
+    const handleUpdate = e => {
+        e.preventDefault()
+        const wine = { title, year, price, alcohol, aroma, flavor, finish }
 
+        fetch(`${PF}/${path}`, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(wine)
+        }).then(() => {
+            console.log('new wine added')
+            history.push('/shop')
+        })
     }
 
     return (
@@ -88,7 +82,7 @@ const EditProduct = () => {
                 )} {
 
                 }
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleUpdate}>
                     <WriteFormGroup>
                         <LabelPlus htmlFor="fileInput">
                             <BackgroundCircle>
@@ -165,9 +159,8 @@ const EditProduct = () => {
                     </WriteFormGroup>
                     <WriteFormGroup>
                         <Button type="submit">Update</Button>
-                        <Button type="submit">Delete</Button>
+                        {/* <Button type="submit">Delete</Button> */}
                     </WriteFormGroup>
-
                 </Form>
             </Container>
         </BackgroundPhoto>
@@ -259,7 +252,7 @@ const Input = styled.input`
 
 const Button = styled.button`
     padding: 10px;
-    width: 40%;
+    width: 100%;
     border-radius: 5px;
     border: none;
     color: #fff;

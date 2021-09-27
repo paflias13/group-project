@@ -14,10 +14,6 @@ import ShoppingCart from './ShoppingCart'
 import ShoppingModal from './ShoppingModal'
 import Context from '../context/Context'
 
-// const URL = "http://localhost:8000/wines/"
-const URL = "http://localhost:5000/vineyards/products"
-
-
 const Product = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -31,13 +27,18 @@ const Product = () => {
 
     const location = useLocation()
     const id = location.state?.wineId
+    const path = location.pathname.split("/")[2]
+    const history = useHistory()
+    const PF = "http://localhost:5000/vineyards/products"
+    console.log(path);
 
     const [wineData, setWineData] = useState([])
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(URL)
-            setWineData(res.data)
+            const res = await axios.get(PF)
+            console.log(res.data.data.data)
+            setWineData(res.data.data.data)
         } catch (error) {
             console.log('Wrong data')
         }
@@ -47,20 +48,19 @@ const Product = () => {
         fetchData()
     }, [])
 
-    const product = wineData.find(p => p.id == id)
+    const product = wineData.find(p => p._id == id)
 
-    // const [updateMode, setUpdateMode] = useState(false)
-    // const path = location.pathname.split("/")[2]
-    // const { user } = useContext(Context)
 
-    // const handleDelete = async () => {
-    //     try {
-    //         await axios.delete('/posts/' + path, { data: { username: user.username } })
-    //         window.location.replace('/')
-    //     } catch (error) {
-    //         console.log("You didn't delete! Try again")
-    //     }
-    // }
+    /*  */
+
+    const handleDelete = () => {
+        console.log('inside');
+        axios.delete(`${PF}/${path}`)
+            .then(res => {
+                console.log(res);
+            })
+        history.push('/shop')
+    }
 
     return (
         <ProductWrapper>
@@ -69,10 +69,10 @@ const Product = () => {
             </Link>
             <Basket onClick={setModalIsOpenToTrue}><ShoppingBasketOutlined /></Basket>
             {product ? (
-                <Container>
-                    <Image src={product.pic} />
-                    <Wrapper key={product.id}>
-                        <Date>{product.date}</Date>
+                <Container key={product._id}>
+                    <Image src={product.photo} />
+                    <Wrapper>
+                        <Date>{product.year}</Date>
                         <Title>{product.title}</Title>
                         <Price>{product.price}</Price>
                         <Actions>
@@ -92,15 +92,14 @@ const Product = () => {
                                 <Option value="12">12</Option>
                             </Select>
                             <Button className="actionButton" value="PURCHASE"></Button>
-                            <Link>
-                                <Button className="actionButton" value="DELETE"></Button>
-                            </Link>
+                            {/* <Button onClick={handleDelete} className="actionButton" value={value} ></Button> */}
+                            <ButtonDelete onClick={handleDelete}>DELETE</ButtonDelete>
                             <Link
-                                key={product.id}
+                                key={product._id}
                                 className="link"
                                 to={{
-                                    pathname: `/edit/${product.id}`,
-                                    state: { wineId: product.id }
+                                    pathname: `/edit/${product._id}`,
+                                    state: { wineId: product._id }
                                 }}>
                                 <Button className="actionButton" value="EDIT"></Button>
                             </Link>
@@ -111,8 +110,8 @@ const Product = () => {
                         <SmallDesc>{product.flavor}</SmallDesc>
                         <SmallTitle>Finish</SmallTitle>
                         <SmallDesc>{product.finish}</SmallDesc>
-                        <SmallTitle>Alcohol %</SmallTitle>
-                        <SmallDesc>{product.alcohol}</SmallDesc>
+                        <SmallTitle>Alcohol</SmallTitle>
+                        <SmallDesc>{product.alcohol} %</SmallDesc>
                         <SmallTitle>Size</SmallTitle>
                         <SmallDesc>750 ml</SmallDesc>
                         <ModalContainer>
@@ -264,6 +263,29 @@ const ButtonClose = styled.button`
     border: none;
     cursor: pointer;
     background-color: #fff;
+`
+
+const ButtonDelete = styled.button`
+    color: var(--color-para);
+    border-radius: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    border: 3px solid var(--color-brown);
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+    background-color: var(--color-brown);
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    }
 `
 
 export default Product

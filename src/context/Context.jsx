@@ -3,29 +3,31 @@ import Reducer from './Reduser'
 
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem('user')) || null,
+    admin: JSON.parse(localStorage.getItem('admin')) || null,
     isFetching: false,
     error: false,
 }
 
-const Context = createContext(INITIAL_STATE)
+export const Context = createContext(INITIAL_STATE)
 
-const ContextProvider = ({ children }) => {
+export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)
+    console.log(dispatch)
 
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(state.user))
+        localStorage.setItem('admin', JSON.stringify(state.admin))
     }, [state.user])
 
     return (
         <Context.Provider value={{
             user: state.user,
+            admin: state.admin,
             isFetching: state.isFetching,
             error: state.error,
-            dispatch,
+            dispatch
         }}>
             {children}
         </Context.Provider>
     )
 }
-
-export default { Context, ContextProvider }

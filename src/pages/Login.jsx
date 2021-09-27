@@ -1,8 +1,33 @@
-// import { Input } from '@material-ui/core'
-import { Link } from "react-router-dom";
+import { useContext, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { Context } from '../context/Context'
 import styled from 'styled-components'
+import axios from "axios";
+
+const PF = "http://localhost:5000/vineyards/products"
 
 const Login = () => {
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const { dispatch, isFetching } = useContext(Context)
+    console.log(emailRef)
+    console.log(passwordRef)
+    console.log(dispatch)
+
+    const handleSubmit = async e => {
+        e.preventDefault()
+        dispatch({ type: 'LOGIN_START' })
+        try {
+            const res = await axios.post('http://localhost:5000/api/users/login', {
+                email: emailRef.current.value,
+                password: passwordRef.current.value,
+            })
+            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
+        } catch (error) {
+            dispatch({ type: 'LOGIN_FAILURE' })
+        }
+    }
     return (
         <BackImage>
             <Container>
@@ -11,12 +36,16 @@ const Login = () => {
                     <Desc>In order to proceed you need to login. If you are not a member you need to sign up by clicking the link on the left.</Desc>
                     <Span>log in</Span>
                 </Infos>
-                <Form onSubmit="">
-                    <Label className="success error">*username</Label>
-                    <Input type="text" />
+                <Form onSubmit={handleSubmit}>
+                    <Label className="success error">*email</Label>
+                    <Input
+                        type="email"
+                        placeholder="e.g. example@gmail.com"
+                        required
+                        ref={emailRef} />
                     <Label className="success error">*password</Label>
-                    <Input type="password" />
-                    <Button type="submit" onClick="">log in</Button>
+                    <Input type="password" placeholder="Enter your password..." required ref={passwordRef} />
+                    <Button type="submit" disabled={isFetching}>log in</Button>
                 </Form>
                 <LinksForActions>
                     <Link style={links} to="/forgotPassword">Forgot your username or password? </Link>

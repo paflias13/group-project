@@ -51,6 +51,7 @@ const NavBar = () => {
           <a href="/registration">registration</a>
           <a href="/add">add</a>
           <a href="/basket">basket</a>
+          <a href="/about">about</a>
         </Left>
         <Center></Center>
         <Right></Right>
