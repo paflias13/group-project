@@ -10,7 +10,6 @@ const Reducer = (state, action) => {
         case 'LOGIN_SUCCESS':
             return {
                 user: action.payload,
-                admin: action.payload,
                 isFetching: false,
                 error: false
             }

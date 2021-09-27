@@ -37,7 +37,7 @@ const Product = () => {
     const fetchData = async () => {
         try {
             const res = await axios.get(PF)
-            console.log(res.data.data.data)
+            // console.log(res.data.data.data)
             setWineData(res.data.data.data)
         } catch (error) {
             console.log('Wrong data')
@@ -49,9 +49,6 @@ const Product = () => {
     }, [])
 
     const product = wineData.find(p => p._id == id)
-
-
-    /*  */
 
     const handleDelete = () => {
         console.log('inside');

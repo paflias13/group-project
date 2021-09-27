@@ -47,11 +47,11 @@ const Wines = () => {
 
 const Container = styled.div`
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 80%;
     margin: 0 auto;
+    flex-wrap: wrap;
 `
 
 const Wrapper = styled.div`

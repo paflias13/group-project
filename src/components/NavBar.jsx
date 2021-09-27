@@ -1,6 +1,8 @@
 import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { Context } from "../context/Context";
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../index.css'
 
@@ -37,6 +39,12 @@ const Right = styled.div`
 `;
 
 const NavBar = () => {
+  const { user, admin, dispatch } = useContext(Context)
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' })
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -47,8 +55,15 @@ const NavBar = () => {
           {/* <Link to={"/shop"}>shop</Link> */}
           <a href="/">home</a>
           <a href="/shop">shop</a>
-          <a href="/login">login</a>
-          <a href="/registration">registration</a>
+          {user ? (
+            <span>{user && "LOGOUT"}</span>
+
+          ) : (
+            <>
+              <a href="/login">login</a>
+              <a href="/registration">registration</a>
+            </>
+          )}
           <a href="/add">add</a>
           <a href="/basket">basket</a>
           <a href="/about">about</a>
