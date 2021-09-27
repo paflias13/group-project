@@ -3,10 +3,12 @@ import Button from './RegistrationButton'
 import { useState } from 'react'
 import Axios from 'axios'
 import { Link } from "react-router-dom"
+import { useHistory } from 'react-router'
+
 
 
 const RegistrationForm = () => {
-    // const history = useHistory()
+    const history = useHistory()
     const PF = "http://localhost:5000/vineyards/users/signup"
     const [data, setData] = useState({
         userName: "",
@@ -46,7 +48,7 @@ const RegistrationForm = () => {
                 dateOfBirth: data.dateOfBirth,
                 country: data.country
             })
-            // history.
+            history.push('/login')
         } catch (error) {
             console.log(error, 'catch');
         }

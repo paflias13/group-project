@@ -53,20 +53,20 @@ const NavBar = () => {
             <ShoppingCart />
           </Shop>
           {/* <Link to={"/shop"}>shop</Link> */}
-          <a href="/">home</a>
-          <a href="/shop">shop</a>
+          <Link to="/">home</Link>
+          <Link to="/shop">shop</Link>
           {user ? (
             <span>{user && "LOGOUT"}</span>
 
           ) : (
             <>
-              <a href="/login">login</a>
-              <a href="/registration">registration</a>
+              <Link to="/login">login</Link>
+              <Link to="/registration">registration</Link>
             </>
           )}
-          <a href="/add">add</a>
-          <a href="/basket">basket</a>
-          <a href="/about">about</a>
+          <Link to="/add">add</Link>
+          <Link to="/basket">basket</Link>
+          <Link to="/about">about</Link>
         </Left>
         <Center></Center>
         <Right></Right>

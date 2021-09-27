@@ -23,8 +23,8 @@ const App = () => {
   return (
     <div className="App">
       {/* Announcement */}
-      <NavBar />
       <Router>
+        <NavBar />
         <Switch>
           <Route exact path="/" >
             <Home />
@@ -67,8 +67,8 @@ const App = () => {
             <PrintData />
           </Route> */}
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </div>
   )
 }
