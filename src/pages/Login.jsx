@@ -22,7 +22,7 @@ const Login = () => {
                 password: passwordRef.current.value,
             })
             console.log(res.data.data.user.role)
-            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
+            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.data.user })
         } catch (error) {
             dispatch({ type: 'LOGIN_FAILURE' })
         }
