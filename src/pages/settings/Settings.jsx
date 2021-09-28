@@ -4,29 +4,80 @@ import Button from '../../components/RegistrationButton'
 import { Link } from "react-router-dom"
 import { useContext } from 'react'
 import { Context } from "../../context/Context";
+import { useState } from 'react'
+import { useHistory } from 'react-router'
 
 const PF = "http://localhost:5000/vineyards/users/updateMe"
 
 const Settings = () => {
-    const { user } = useContext(Context)
+    const { user, dispatch } = useContext(Context)
+    const history = useHistory()
+    // const { updateUser, setUpdateUser } = useState(user)
+    const [success, setSuccess] = useState(false);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [phone, setPhone] = useState('');
+    const [mobilePhone, setMobilePhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [country, setCountry] = useState('');
+
 
     const handleSubmit = async e => {
         e.preventDefault()
-
-        try {
-
-        } catch (error) {
-
+        dispatch({ type: "UPDATE_START" })
+        const updatedUser = {
+            firstName,
+            lastName,
+            address,
+            city,
+            password,
+            passwordConfirm,
+            zipCode,
+            phone,
+            mobilePhone,
+            email,
+            dateOfBirth,
+            country,
         }
-        const res = await axios.patch(PF, {
-            user
-        })
-
+        console.log(updatedUser)
+        console.log(dispatch({ type: "UPDATE_START" }))
+        try {
+            console.log('inside');
+            const res = await axios.post(PF, updatedUser)
+            console.log(res)
+            setSuccess(true)
+            console.log(res.data.data.data);
+            dispatch({ type: "UPDATE_SUCCESS", payload: res.data })
+        } catch (err) {
+            console.log(err, 'mine')
+            console.log(dispatch({ type: "UPDATE_FAILURE" }))
+        }
+        // try {
+        //     fetch(`${PF}`, {
+        //         method: 'PATCH',
+        //         headers: { "Content-Type": "application/json" },
+        //         body: JSON.stringify(updatedUser)
+        //     }).then(() => {
+        //         console.log('update')
+        //         // history.push('/shop')
+        //     })
+        // } catch (error) {
+        //     console.log(error, ' from edit')
+        // }
     }
 
     return (
         <BackImage>
             <Container>
+                {/* <WindowSettings>
+                    <Link>EDIT</Link>
+                </WindowSettings> */}
                 <Infos>
                     <Title>edit profile</Title>
                     <Desc>Change the information below to edit your profile.</Desc>
@@ -38,22 +89,46 @@ const Settings = () => {
                         <Input onChange={(e) => handle(e)} value={data.userName} id="userName" type="text" placeholder="userName" />
                     </InputInfo> */}
                         <InputInfo>
-                            <Input value={user.email} id="email" type="email" placeholder="Email" />
+                            <Input
+                                type="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder={user.email}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.firstName} id="firstName" type="text" placeholder="First Name" />
+                            <Input
+                                onChange={(e) => setFirstName(e.target.value)}
+                                type="text"
+                                placeholder={user.firstName}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.lastName} id="lastName" type="text" placeholder="Last Name" />
+                            <Input
+                                onChange={(e) => setLastName(e.target.value)}
+                                type="text"
+                                placeholder={user.lastName}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.address} id="address" type="text" placeholder="Address" />
+                            <Input
+                                onChange={(e) => setAddress(e.target.value)}
+                                type="text"
+                                placeholder={user.address}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.city} id="city" type="text" placeholder="City" />
+                            <Input
+                                onChange={(e) => setCity(e.target.value)}
+                                type="text"
+                                placeholder={user.city}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.country} type="text" id="country" />
+                            <Input
+                                onChange={(e) => setCountry(e.target.value)}
+                                type="text"
+                                id={user.country}
+                            />
                             {/* <Select>
                             <Option disabled>Countries</Option>
                             <Option onChange={(e) => handle(e)} value={data.country}>Greece</Option>
@@ -62,27 +137,50 @@ const Settings = () => {
                         </Select> */}
                         </InputInfo>
                     </FirstGroup>
-                    <Button>
-                        <Link to="/login">Login</Link>
-                    </Button>
+                    <button type='submit'>Update</button>
+                    {/* <Button type='submit' value='Update'></Button> */}
                     <SecondGroup>
                         <InputInfo>
-                            <Input id="password" type="password" placeholder="Password" />
+                            <Input
+                                onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                                placeholder="Password"
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input id="passwordConfirm" type="password" placeholder="Confirm Password" />
+                            <Input
+                                onChange={(e) => setPasswordConfirm(e.target.value)}
+                                type="password"
+                                placeholder="Confirm Password"
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.zipCode} id="zipCode" type="number" placeholder="Zip Code" />
+                            <Input
+                                onChange={(e) => setZipCode(e.target.value)}
+                                type="string"
+                                placeholder={user.zipCode}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.phone} id="phone" type="number" placeholder="Phone" />
+                            <Input
+                                onChange={(e) => setPhone(e.target.value)}
+                                type="string"
+                                placeholder={user.phone}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.mobilePhone} id="mobilePhone" type="number" placeholder="Mobile Phone" />
+                            <Input
+                                onChange={(e) => setMobilePhone(e.target.value)}
+                                type="string"
+                                placeholder={user.mobilePhone}
+                            />
                         </InputInfo>
                         <InputInfo>
-                            <Input value={user.dateOfBirth} id="dateOfBirth" type="text" placeholder="Email" />
+                            <Input
+                                onChange={(e) => setDateOfBirth(e.target.value)}
+                                type="date"
+                                placeholder={user.dateOfBirth}
+                            />
                         </InputInfo>
                     </SecondGroup>
                 </Form>

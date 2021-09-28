@@ -91,9 +91,14 @@ const Product = () => {
                                 <Option value="11">11</Option>
                                 <Option value="12">12</Option>
                             </Select>
-                            <Button className="actionButton" value="PURCHASE"></Button>
+                            {user ? (
+                                <Button className="actionButton" value="PURCHASE"></Button>
+                            ) : (
+                                <Link to='/registration'>you want something? welcome with us!</Link>
+                            )
+                            }
                             {/* <Button onClick={handleDelete} className="actionButton" value={value} ></Button> */}
-                            {user && (
+                            {user?.role === 'admin' && (
                                 <>
                                     <ButtonDelete onClick={handleDelete}>DELETE</ButtonDelete>
                                     <Link

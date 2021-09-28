@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router";
 import { useContext } from "react";
 import { Context } from "../context/Context";
 
-const PF = "http://localhost:5000/vineyards/products"
+const PF = "http://localhost:5000/vineyards/products/"
 
 const EditProduct = () => {
     const location = useLocation()
@@ -43,18 +43,18 @@ const EditProduct = () => {
         e.preventDefault()
         const newWine = { title, year, price, alcohol, aroma, flavor, finish }
 
-        if (file) {
-            const data = new FormData()
-            const filename = Date.now() + file.name
-            data.append("name", filename)
-            data.append("file", file)
-            newWine.photo = filename
-            try {
-                await axios.post(PF, data)
-            } catch (error) {
-                console.log(error, ' from add')
-            }
-        }
+        // if (file) {
+        //     const data = new FormData()
+        //     const filename = Date.now() + file.name
+        //     data.append("name", filename)
+        //     data.append("file", file)
+        //     newWine.photo = filename
+        //     try {
+        //         await axios.post(PF, data)
+        //     } catch (error) {
+        //         console.log(error, ' from add')
+        //     }
+        // }
         try {
             const res = await axios.post(PF, newWine);
             console.log(res)
@@ -83,6 +83,7 @@ const EditProduct = () => {
                 {wine.photo && (
                     <WineImage src={PF + wine.photo} />
                 )}
+                {/* URL.createObjectURL(file) : PF + '/' + wine.photo */}
                 {/* {file && (
                     <WineImage src={URL.createObjectURL(file)} alt='wine' />
                 )} */}
@@ -95,14 +96,14 @@ const EditProduct = () => {
                             <Text>Add product photo</Text>
                         </LabelPlus>
                     </WriteFormGroup>
-                    <WriteFormGroup>
+                    {/* <WriteFormGroup>
                         <InputFile
                             type="file"
                             id="fileInput"
                             required
                             onChange={(e) => setFile(e.target.files[0])}
                         />
-                    </WriteFormGroup>
+                    </WriteFormGroup> */}
                     <WriteFormGroup>
                         <Input
                             type="text"

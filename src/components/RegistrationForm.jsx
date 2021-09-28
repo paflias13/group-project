@@ -92,7 +92,7 @@ const RegistrationForm = () => {
                         </Select> */}
                     </InputInfo>
                 </FirstGroup>
-                <Button>
+                <Button value='sign up'>
                     <Link to="/login">Login</Link>
                 </Button>
                 <SecondGroup>
