@@ -34,7 +34,7 @@ const Footer = () => {
 }
 
 const Container = styled.div`
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;

@@ -2,12 +2,15 @@ import { useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../context/Context'
 import styled from 'styled-components'
-import axios from "axios";
+import axios from "axios"
+import { useHistory, useLocation } from "react-router";
+
 
 const Login = () => {
 
     const emailRef = useRef()
     const passwordRef = useRef()
+    const history = useHistory()
     const { dispatch, isFetching } = useContext(Context)
     const [loginStatus, setLoginStatus] = useState("");
 
@@ -50,16 +53,7 @@ const Login = () => {
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             })
-            // .then(res => {
-            //     if (res.data.message) {
-            //         console.log('inside')
-            //         console.log(res)
-            //         // setLoginStatus(res.data.message);
-            //     } else {
-            //         console.log(res.data[0].username)
-            //         // setLoginStatus(res.data[0].username);
-            //     }
-            // })
+            history.push('/')
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.data.user })
         } catch (error) {
             console.log(error)

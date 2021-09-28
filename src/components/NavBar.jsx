@@ -16,6 +16,7 @@ import { Lines } from "./Lines";
 import { Facebook } from "@material-ui/icons";
 import { Instagram } from "@material-ui/icons";
 import { Context } from "../context/Context";
+import { useHistory } from "react-router";
 
 
 export default function NavBar() {
@@ -33,9 +34,14 @@ export default function NavBar() {
   }
 
   const { user, dispatch } = useContext(Context)
+  const history = useHistory()
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
+  }
+
+  const handleProfile = () => {
+    return history.push('/profile')
   }
 
   // const classes = useStyles();
@@ -60,9 +66,13 @@ export default function NavBar() {
           </Link>
         </Center>
         <Right>
-          {user && (
-            <span style={{ marginLeft: '10px' }}>HELLO {user.firstName}</span>
-          )}
+          {user ? (<span style={{ marginLeft: '10px' }}>HELLO
+            <span onClick={handleProfile}>{user.firstName}</span>
+          </span>)
+            : (
+              <Link to="/login">LOGIN</Link>
+            )
+          }
           <Link to='/' onClick={handleLogout}>{user && "LOGOUT"}</Link>
           {['right'].map((anchor) => (
             <React.Fragment key={anchor}>
@@ -76,36 +86,40 @@ export default function NavBar() {
                 <List style={{ position: "relative" }}>
                   <Lines />
                   <Toggle>
-                    <Link to='/shop'>
+                    <Link onClick={toggleDrawer(anchor, false)} to='/shop'>
                       <Button><ShoppingCartOutlined style={ToggleStyles} /></Button>
                     </Link>
                     <CancelOutlined style={ToggleStyles} onClick={toggleDrawer(anchor, false)} />
                   </Toggle>
                   <ListItem className="listItems">
-                    <Link to="/">HOME</Link>
+                    <Link onClick={toggleDrawer(anchor, false)} to="/">HOME</Link>
                   </ListItem>
                   <ListItem className="listItems">
-                    <Link to="/shop">SHOP</Link>
+                    <Link onClick={toggleDrawer(anchor, false)} to="/shop">SHOP</Link>
                   </ListItem>
-                  {user && (
+                  <ListItem className="listItems">
+                    <Link onClick={toggleDrawer(anchor, false)} to="/basket">BASKET</Link>
+                  </ListItem>
+                  <ListItem className="listItems">
+                    <Link onClick={toggleDrawer(anchor, false)} to="/about">ABOUT</Link>
+                  </ListItem>
+                  {!user && (
                     <>
                       <ListItem className="listItems">
-                        <Link to="/login">LOGIN</Link>
-                      </ListItem>
-                      <ListItem className="listItems">
-                        <Link to="/registration">REGISTRATION</Link>
+                        <Link onClick={toggleDrawer(anchor, false)} to="/registration">REGISTRATION</Link>
                       </ListItem>
                     </>
                   )}
-                  <ListItem className="listItems">
-                    <Link to="/basket">BASKET</Link>
-                  </ListItem>
-                  <ListItem className="listItems">
-                    <Link to="/about">ABOUT</Link>
-                  </ListItem>
                   {
                     user?.role === 'admin' && (
-                      <Link to="/add">add</Link>
+                      <>
+                        <ListItem className="listItems">
+                          <Link to="/add">ADD</Link>
+                        </ListItem>
+                        {/* <ListItem className="listItems">
+                          <Link to="/edit">EDIT</Link>
+                        </ListItem> */}
+                      </>
                     )
                   }
                   <Social>
@@ -119,7 +133,8 @@ export default function NavBar() {
                 </List>
               </SwipeableDrawer>
             </React.Fragment>
-          ))}
+          ))
+          }
         </Right>
       </Wrapper>
     </Container>
