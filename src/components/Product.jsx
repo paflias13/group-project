@@ -12,7 +12,7 @@ import NotFound from './NotFound'
 import Modal from 'react-modal';
 import ShoppingCart from './ShoppingCart'
 import ShoppingModal from './ShoppingModal'
-import Context from '../context/Context'
+import { Context } from '../context/Context'
 
 const Product = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -59,6 +59,9 @@ const Product = () => {
         history.push('/shop')
     }
 
+    const { user } = useContext(Context)
+    console.log(user?.role ?? 'N/A')
+
     return (
         <ProductWrapper>
             <Link to="/shop">
@@ -90,16 +93,20 @@ const Product = () => {
                             </Select>
                             <Button className="actionButton" value="PURCHASE"></Button>
                             {/* <Button onClick={handleDelete} className="actionButton" value={value} ></Button> */}
-                            <ButtonDelete onClick={handleDelete}>DELETE</ButtonDelete>
-                            <Link
-                                key={product._id}
-                                className="link"
-                                to={{
-                                    pathname: `/edit/${product._id}`,
-                                    state: { wineId: product._id }
-                                }}>
-                                <Button className="actionButton" value="EDIT"></Button>
-                            </Link>
+                            {user && (
+                                <>
+                                    <ButtonDelete onClick={handleDelete}>DELETE</ButtonDelete>
+                                    <Link
+                                        key={product._id}
+                                        className="link"
+                                        to={{
+                                            pathname: `/edit/${product._id}`,
+                                            state: { wineId: product._id }
+                                        }}>
+                                        <Button className="actionButton" value="EDIT"></Button>
+                                    </Link>
+                                </>
+                            )}
                         </Actions>
                         <SmallTitle>Aromas</SmallTitle>
                         <SmallDesc>{product.aroma}</SmallDesc>

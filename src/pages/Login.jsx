@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../context/Context'
 import styled from 'styled-components'
@@ -9,21 +9,60 @@ const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const { dispatch, isFetching } = useContext(Context)
+    const [loginStatus, setLoginStatus] = useState("");
 
     /* helllo */
+    // Axios.post("http://localhost:3001/login", {
+    //     username: username,
+    //     password: password,
+    // }).then((response) => {
+    //     if (response.data.message) {
+    //         setLoginStatus(response.data.message);
+    //     } else {
+    //         setLoginStatus(response.data[0].username);
+    //     }
+    // })
+
+    // const [role, setRole] = useState("");
+
+    // Axios.defaults.withCredentials = true;
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/login").then((response) => {
+    //         if (response.data.loggedIn == true) {
+    //             setRole(response.data.user[0].role);
+    //         }
+    //     });
+    // }, []);
+
+    // return (
+    //     <div>
+    //         {role == "visitor" && <NormalUser />}
+    //         {role == "mod" && <Mod />}
+    //         {role == "admin" && <Admin />}
+    //     </div>
+    // )
 
     const handleSubmit = async e => {
         e.preventDefault()
         dispatch({ type: 'LOGIN_START' })
         try {
-
             const res = await axios.post('http://localhost:5000/vineyards/users/login', {
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             })
-            console.log(res.data.data.user.role)
+            // .then(res => {
+            //     if (res.data.message) {
+            //         console.log('inside')
+            //         console.log(res)
+            //         // setLoginStatus(res.data.message);
+            //     } else {
+            //         console.log(res.data[0].username)
+            //         // setLoginStatus(res.data[0].username);
+            //     }
+            // })
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.data.user })
         } catch (error) {
+            console.log(error)
             dispatch({ type: 'LOGIN_FAILURE' })
         }
     }

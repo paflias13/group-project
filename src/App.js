@@ -18,8 +18,8 @@ import { Context } from './context/Context';
 
 
 const App = () => {
-  const { user, admin } = useContext(Context)
-  console.log(user)
+  const { user } = useContext(Context)
+  console.log(user?.role === 'user')
   return (
     <div className="App">
       {/* Announcement */}
@@ -44,11 +44,11 @@ const App = () => {
             {/* <RegistrationForm /> */}
           </Route>
           <Route path="/add" >
-            {admin ? <Home /> : <AddProduct />}
+            {user?.role === 'admin' ? <AddProduct /> : <Home />}
             {/* <AddProduct /> */}
           </Route>
           <Route path="/edit">
-            {admin ? <Home /> : <EditProduct />}
+            {user ? <Home /> : <EditProduct />}
             {/* <EditProduct /> */}
           </Route>
           <Route path="/basket" >

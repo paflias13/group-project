@@ -39,8 +39,7 @@ const Right = styled.div`
 `;
 
 const NavBar = () => {
-  const { user, admin, dispatch } = useContext(Context)
-  console.log(user)
+  const { user, dispatch } = useContext(Context)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
@@ -58,13 +57,15 @@ const NavBar = () => {
           <Link to="/shop">shop</Link>
           <Link to='/' onClick={handleLogout}>{user && "LOGOUT"}</Link>
           {user ? (
-            <span>HELLO {user.firstName}</span>
+            <span style={{ marginLeft: '10px' }}>HELLO {user.firstName}</span>
           ) : (
             <>
               <Link to="/login">login</Link>
               <Link to="/registration">registration</Link>
-              <Link to="/add">add</Link>
             </>
+          )}
+          {user?.role === 'admin' && (
+            <Link to="/add">add</Link>
           )}
           <Link to="/basket">basket</Link>
           <Link to="/about">about</Link>
