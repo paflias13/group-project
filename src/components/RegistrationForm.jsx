@@ -5,13 +5,12 @@ import Axios from 'axios'
 import { Link } from "react-router-dom"
 import { useHistory } from 'react-router'
 
-
+/* i removed the field username from From */
 
 const RegistrationForm = () => {
     const history = useHistory()
     const PF = "http://localhost:5000/vineyards/users/signup"
     const [data, setData] = useState({
-        userName: "",
         firstName: "",
         lastName: "",
         address: "",
@@ -34,7 +33,6 @@ const RegistrationForm = () => {
         try {
             console.log('inside axios');
             Axios.post("http://localhost:5000/vineyards/users/signup", {
-                userName: data.userName,
                 firstName: data.firstName,
                 lastName: data.lastName,
                 address: data.address,
@@ -66,9 +64,9 @@ const RegistrationForm = () => {
         <Container>
             <Form id="myForm" onSubmit={submit}>
                 <FirstGroup>
-                    <InputInfo>
+                    {/* <InputInfo>
                         <Input onChange={(e) => handle(e)} value={data.userName} id="userName" type="text" placeholder="userName" />
-                    </InputInfo>
+                    </InputInfo> */}
                     <InputInfo>
                         <Input onChange={(e) => handle(e)} value={data.email} id="email" type="email" placeholder="Email" />
                     </InputInfo>
@@ -85,11 +83,12 @@ const RegistrationForm = () => {
                         <Input onChange={(e) => handle(e)} value={data.city} id="city" type="text" placeholder="City" />
                     </InputInfo>
                     <InputInfo>
-                        <Input onChange={(e) => handle(e)} type="text" value={data.country} id="country" />
+                        {/* <Input onChange={(e) => handle(e)} type="text"  id="country" /> */}
                         {/* <Select>
-                            <Option>Greece</Option>
-                            <Option>Italy</Option>
-                            <Option>Spain</Option>
+                            <Option disabled>Countries</Option>
+                            <Option onChange={(e) => handle(e)} value={data.country}>Greece</Option>
+                            <Option onChange={(e) => handle(e)} value={data.country}>Italy</Option>
+                            <Option onChange={(e) => handle(e)} value={data.country}>Spain</Option>
                         </Select> */}
                     </InputInfo>
                 </FirstGroup>
