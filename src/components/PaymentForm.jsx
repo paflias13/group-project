@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
-import { useEffect } from "react"
+// import { useEffect } from "react"  
 import { useState } from "react"
 import styled from "styled-components"
 import PaymentSuccessMessage from "./PaymentSuccessMessage"
@@ -19,8 +19,8 @@ const CARD_OPTIONS = {
             "::placeholder": { color: "#87bbfd" }
         },
         invalid: {
-            iconColor: "red",
-            color: "red"
+            iconColor: "#ffc7ee",
+            color: "#ffc7ee"
         }
     }
 }
@@ -45,7 +45,7 @@ const PaymentForm = () => {
                     id
                 })
 
-                if (response.data) {
+                if (response.data.success) {
                     console.log("Successful payment")
                     setSuccess(true)
                 }

@@ -4,8 +4,17 @@ import Button from './Button'
 import { Link } from "react-router-dom"
 
 
-const ShoppingModal = () => {
-
+const ShoppingModal = (props) => {
+    const rows = props?.items.map((item) => {
+        return (
+            <TableRow>
+                <TableCell>{item.quan}</TableCell>
+                <TableCell>{item.img}</TableCell>
+                <TableCell>{item.title}</TableCell>
+                <TableCell>{item.price}</TableCell>
+                <TableCell>{item.price * item.quan}</TableCell>
+            </TableRow>);
+    })
 
     return (
         <Container>
@@ -23,26 +32,27 @@ const ShoppingModal = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
+                    {rows}
                     <TableRow>
-                        <TableCell>1</TableCell>
+                        {/* <TableCell>1</TableCell>
                         <TableCell><Img src="https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png" alt="" /></TableCell>
                         <TableCell>Edna Valley Pinot Noir</TableCell>
                         <TableCell>PRICE</TableCell>
-                        <TableCell>TOTAL</TableCell>
+                        <TableCell>TOTAL</TableCell> */}
                     </TableRow>
                     <TableRow>
-                        <TableCell>2</TableCell>
+                        {/* <TableCell>2</TableCell>
                         <TableCell><Img src="https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png" alt="" /></TableCell>
                         <TableCell>Edna Valley Pinot Noir</TableCell>
                         <TableCell>PRICE</TableCell>
-                        <TableCell>TOTAL</TableCell>
+                        <TableCell>TOTAL</TableCell> */}
                     </TableRow>
                 </TableBody>
             </Table>
             <WrapperButtonSubTotal>
-                <SubTotal>SUBTOTAL  &nbsp;  €121212</SubTotal>
-                <Link style={{ textDecoration: 'none' }} to='/showCard'>
-                    <Button value="VIEW CART">VIEW CART</Button>
+                <SubTotal>SUBTOTAL  &nbsp; {SubTotal.subtotal}</SubTotal>
+                <Link style={{ textDecoration: 'none' }} to='/basket'>
+                    <Button value="VIEW CART" >VIEW CART</Button>
                 </Link>
             </WrapperButtonSubTotal>
         </Container>
@@ -50,7 +60,6 @@ const ShoppingModal = () => {
 }
 
 const Container = styled.div`
-
 `
 
 const WrapperTitle = styled.div`

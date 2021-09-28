@@ -19,6 +19,7 @@ const Product = () => {
 
     const setModalIsOpenToTrue = () => {
         setModalIsOpen(true)
+        purchasedProduct()
     }
 
     const setModalIsOpenToFalse = () => {
@@ -30,7 +31,6 @@ const Product = () => {
     const path = location.pathname.split("/")[2]
     const history = useHistory()
     const PF = "http://localhost:5000/vineyards/products"
-    console.log(path);
 
     const [wineData, setWineData] = useState([])
 
@@ -60,7 +60,29 @@ const Product = () => {
     }
 
     const { user } = useContext(Context)
-    console.log(user?.role ?? 'N/A')
+
+    const [items, setItems] = useState([
+        {
+            quan: "",
+            img: "",
+            title: "",
+            price: "",
+            total: "",
+        },
+    ]);
+
+    const purchasedProduct = () => {
+        setItems([
+            ...items,
+            {
+                quan: "1",
+                img: product.photo,
+                title: product.title,
+                price: product.price,
+                total: product.quan * product.price,
+            },
+        ]);
+    };
 
     return (
         <ProductWrapper>
@@ -92,7 +114,11 @@ const Product = () => {
                                 <Option value="12">12</Option>
                             </Select>
                             {user ? (
-                                <Button className="actionButton" value="PURCHASE"></Button>
+                                <Button
+                                    className="actionButton"
+                                    value="PURCHASE"
+                                    onClick={setModalIsOpenToTrue}
+                                ></Button>
                             ) : (
                                 <Link to='/registration'>you want something? welcome with us!</Link>
                             )
@@ -126,7 +152,7 @@ const Product = () => {
                         <ModalContainer>
                             <Modal style={customStyles} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                 <ButtonClose onClick={setModalIsOpenToFalse}>x</ButtonClose>
-                                <ShoppingModal />
+                                <ShoppingModal items={items} />
                             </Modal>
                         </ModalContainer>
                     </Wrapper>

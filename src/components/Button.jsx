@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
-const Button = ({ value }) => {
+const Button = ({ value, onClick }) => {
     return (
         <div>
-            <PrimaryButton>{value}</PrimaryButton>
+            <PrimaryButton onClick={onClick}>{value}</PrimaryButton>
         </div>
     )
 }
@@ -23,7 +23,6 @@ const PrimaryButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
     &:hover{
     background-color: var(--color-brown);
     color: #fff;
