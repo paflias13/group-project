@@ -22,7 +22,7 @@ const ShoppingCart = () => {
 
     const handleRemove = async () => {
         // products.find(id => )
-        // localStorage.removeItem()
+        localStorage.removeItem()
     }
 
     const handleUpdate = () => {
@@ -47,8 +47,8 @@ const ShoppingCart = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {products?.map(item => (
-                            <TableRow>
+                        {products?.map((item, index) => (
+                            <TableRow key={index}>
                                 <TableCell>
                                     <Infos>
                                         <Img src={item.photo} alt="" />
@@ -73,7 +73,7 @@ const ShoppingCart = () => {
                             <TableCell colspan=''></TableCell>
                             <TableCell colspan=''></TableCell>
                             <TableCell colspan=''></TableCell>
-                            <TableCell colspan=''>€{products.map(item => item.price * item.quan).reduce((x, y) => x + y)}</TableCell>
+                            <TableCell colspan=''>€{products?.map(item => item.price * item.quan).reduce((x, y) => x + y)}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
