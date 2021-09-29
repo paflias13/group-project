@@ -80,6 +80,11 @@ const Product = () => {
             {
                 quan: qty,
                 img: product.photo,
+                year: product.year,
+                alcohol: product.alcohol,
+                finish: product.finish,
+                flavor: product.flavor,
+                aroma: product.aroma,
                 title: product.title,
                 price: product.price,
                 total: product.quan * product.price,
