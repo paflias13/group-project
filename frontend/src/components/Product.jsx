@@ -81,16 +81,17 @@ const Product = () => {
                 quan: qty,
                 img: product.photo,
                 year: product.year,
+                id: product._id,
                 alcohol: product.alcohol,
                 finish: product.finish,
                 flavor: product.flavor,
                 aroma: product.aroma,
                 title: product.title,
                 price: product.price,
-                total: product.quan * product.price,
+                // total: product.quan * product.price,
             },
         })
-        setItems([products,])
+        setItems([products])
     }
 
     return (

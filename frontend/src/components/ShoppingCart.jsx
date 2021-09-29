@@ -11,8 +11,6 @@ import { ProductContext } from "../context/ProductContext"
 const ShoppingCart = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const { products } = useContext(ProductContext)
-    console.log(products);
-
 
     const setModalIsOpenToTrue = () => {
         setModalIsOpen(true)
@@ -21,6 +19,16 @@ const ShoppingCart = () => {
     const setModalIsOpenToFalse = () => {
         setModalIsOpen(false)
     }
+
+    const handleRemove = async () => {
+        // products.find(id => )
+        // localStorage.removeItem()
+    }
+
+    const handleUpdate = () => {
+
+    }
+
 
 
     return (
@@ -39,28 +47,34 @@ const ShoppingCart = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {products.map(item => (
+                        {products?.map(item => (
                             <TableRow>
                                 <TableCell>
                                     <Infos>
-                                        <Img src="https://chamisalvineyards.com/wp-content/uploads/2018/06/CV-morrito-pinot-WP_705x214.png" alt="" />
+                                        <Img src={item.photo} alt="" />
                                         <InfosItems>
                                             <Date>{item.year}</Date>
-                                            <Title>HELLazdazdzadO</Title>
-                                            <ButtonRemove>Remove</ButtonRemove>
+                                            <Title>{item.title}</Title>
+                                            <ButtonRemove onClick={handleRemove}>Remove</ButtonRemove>
                                         </InfosItems>
                                     </Infos>
                                 </TableCell>
-                                <TableCell>100€</TableCell>
+                                <TableCell>{item.price}€</TableCell>
                                 <TableCell>
                                     <InfoQuantity>
-                                        <Input type="text" pattern="[0-9]*"></Input>
-                                        <UpdateButton>Update</UpdateButton>
+                                        <Input type="text" pattern="[0-9]*" value={item.quan} />
+                                        <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
                                     </InfoQuantity>
                                 </TableCell>
-                                <TableCell>€100</TableCell>
+                                <TableCell>€{item.price * item.quan}</TableCell>
                             </TableRow>
                         ))}
+                        <TableRow>
+                            <TableCell colspan=''></TableCell>
+                            <TableCell colspan=''></TableCell>
+                            <TableCell colspan=''></TableCell>
+                            <TableCell colspan=''>€{products.map(item => item.price * item.quan).reduce((x, y) => x + y)}</TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </WrapperTable>

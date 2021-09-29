@@ -23,7 +23,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Announcement */}
       <Router>
         <NavBar />
         <Switch>
@@ -49,7 +48,7 @@ const App = () => {
             {user?.role === 'admin' ? <EditProduct /> : <Home />}
           </Route>
           <Route path="/basket" >
-            <ShoppingCart />
+            {user ? <ShoppingCart /> : <Home />}
           </Route>
           <Route path="/profile" >
             {user ? <Settings /> : <Home />}

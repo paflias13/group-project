@@ -104,9 +104,11 @@ export default function NavBar() {
                     <ListItem className="listItems">
                       <Link onClick={toggleDrawer(anchor, false)} to="/shop">SHOP</Link>
                     </ListItem>
-                    <ListItem className="listItems">
-                      <Link onClick={toggleDrawer(anchor, false)} to="/basket">BASKET</Link>
-                    </ListItem>
+                    {user && (
+                      <ListItem className="listItems">
+                        <Link onClick={toggleDrawer(anchor, false)} to="/basket">BASKET</Link>
+                      </ListItem>
+                    )}
                     <ListItem className="listItems">
                       <Link onClick={toggleDrawer(anchor, false)} to="/about">ABOUT</Link>
                     </ListItem>
@@ -121,7 +123,7 @@ export default function NavBar() {
                       user?.role === 'admin' && (
                         <>
                           <ListItem className="listItems">
-                            <Link to="/add">ADD</Link>
+                            <Link onClick={toggleDrawer(anchor, false)} to="/add">ADD</Link>
                           </ListItem>
                         </>
                       )
