@@ -44,7 +44,6 @@ const AddProduct = () => {
             const res = await axios.post(PF, newWine);
             console.log(res)
             history.push('/shop')
-            // window.location.replace("/shop");
         } catch (err) {
             console.log(err, ' from add')
         }

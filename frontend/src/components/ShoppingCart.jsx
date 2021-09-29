@@ -20,9 +20,11 @@ const ShoppingCart = () => {
         setModalIsOpen(false)
     }
 
+    console.log(products.find(id => console.log(id)))
     const handleRemove = async () => {
-        // products.find(id => )
-        localStorage.removeItem()
+        // products.find(id => console.log(id))
+        // localStorage.removeItem()
+        // delete products
     }
 
     const handleUpdate = () => {

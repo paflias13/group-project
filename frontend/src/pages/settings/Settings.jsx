@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { useEffect } from 'react'
 
-const PF = "http://localhost:5000/vineyards/users/updateMe/"
+const PF = "http://localhost:5000/vineyards/users/updateMe"
 // const URL = "http://localhost:5000/vineyards/users/"
 
 const Settings = () => {
@@ -30,29 +30,10 @@ const Settings = () => {
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [country, setCountry] = useState('');
 
-    // useEffect(() => {
-    //     const fetchWine = async () => {
-    //         const res = await axios.get(`${URL}/${user._id}`)
-    //         console.log(res.data.data.data.firstName);
-    //         setFirstName(res.data.data.data.firstName)
-    //         setLastName(res.data.data.data.lastName)
-    //         setAddress(res.data.data.data.address)
-    //         setCity(res.data.data.data.city)
-    //         setPassword(res.data.data.data.password)
-    //         setPasswordConfirm(res.data.data.data.passwordConfirm)
-    //         setMobilePhone(res.data.data.data.zipCode)
-    //         setPhone(res.data.data.data.phone)
-    //         setEmail(res.data.data.data.mobilePhone)
-    //         setCountry(res.data.data.data.email)
-    //         setCountry(res.data.data.data.country)
-    //     }
-    //     fetchWine()
-    // }, [user._id])
-
 
     const handleSubmit = async e => {
         e.preventDefault()
-        // dispatch({ type: "UPDATE_START" })
+        dispatch({ type: "UPDATE_START" })
         const updatedUser = {
             userName,
             firstName,
@@ -70,14 +51,14 @@ const Settings = () => {
         }
         try {
             console.log('inside');
-            const res = await axios.patch(PF, user._id)
-            console.log(res)
+            const { data } = await axios.patch(PF, updatedUser)
+            console.log(data)
             setSuccess(true)
-            console.log(res.data.data.data);
-            // dispatch({ type: "UPDATE_SUCCESS", payload: res.data })
+            console.log(data.data);
+            dispatch({ type: "UPDATE_SUCCESS", payload: data.data })
         } catch (err) {
             console.log(err, 'mine')
-            // console.log(dispatch({ type: "UPDATE_FAILURE" }))
+            console.log(dispatch({ type: "UPDATE_FAILURE" }))
         }
         // try {
         //     fetch(PF, {
@@ -167,8 +148,8 @@ const Settings = () => {
                         </Select> */}
                         </InputInfo>
                     </FirstGroup>
-                    <button type='submit'>Update</button>
-                    {/* <Button type='submit' value='Update'></Button> */}
+                    {/* <button type='submit'>Update</button> */}
+                    <Button type='submit' value='Update'></Button>
                     <SecondGroup>
                         <InputInfo>
                             <Input

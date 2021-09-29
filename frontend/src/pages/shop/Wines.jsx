@@ -24,23 +24,24 @@ const Wines = () => {
 
     return (
         <>
-            {wine.map(wine => (
-                <Container key={wine._id}>
+            <Container>
+                {wine.map(wine => (
                     <Link
+                        key={wine._id}
                         className="link"
                         to={{
                             pathname: `/product/${wine._id}`,
                             state: { wineId: wine._id }
                         }}>
                         <Wrapper>
-                            <Image src={wine.photo} alt="zad" />
+                            <Image src={`${wine.photo}`} alt="wine" />
                             <Title>{wine.title}</Title>
                             {/* <Info>{wine.info}</Info> */}
                             <Button value="LEARN MORE" />
                         </Wrapper>
                     </Link>
-                </Container>
-            ))}
+                ))}
+            </Container>
         </>
     )
 }
