@@ -53,7 +53,7 @@ const ShoppingCart = () => {
                             <TableRow key={index}>
                                 <TableCell>
                                     <Infos>
-                                        <Img src={item.photo} alt="" />
+                                        <Img src={item.img} alt={item.title} />
                                         <InfosItems>
                                             <Date>{item.year}</Date>
                                             <Title>{item.title}</Title>

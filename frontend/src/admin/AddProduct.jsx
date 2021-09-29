@@ -41,25 +41,18 @@ const AddProduct = () => {
             }
         }
         try {
-            const res = await axios.post(PF, newWine);
-            console.log(res)
-            history.push('/shop')
-        } catch (err) {
-            console.log(err, ' from add')
+            fetch(PF, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newWine)
+            }).then(() => {
+                console.log('new wine added')
+                history.push('/shop')
+            })
+        } catch (error) {
+            console.log(error)
         }
     }
-    // try {
-    //     fetch(PF, {
-    //         method: 'POST',
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(newWine)
-    //     }).then(() => {
-    //         console.log('new wine added')
-    //         history.push('/shop')
-    //     })
-    // } catch (error) {
-    //     console.log(error)
-    // }
 
 
 

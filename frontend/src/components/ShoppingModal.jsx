@@ -29,7 +29,9 @@ const ShoppingModal = () => {
                     {products.map((item, index) => (
                         <TableRow key={index}>
                             <TableCell>{item.quan}</TableCell>
-                            <TableCell>{item.img}</TableCell>
+                            <TableCell>
+                                <Img src={item.img} />
+                            </TableCell>
                             <TableCell>{item.title}</TableCell>
                             <TableCell>{item.price}€</TableCell>
                             <TableCell>{item.price * item.quan}€</TableCell>

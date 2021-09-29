@@ -65,9 +65,12 @@ const Wrapper = styled.div`
 `
 
 const Image = styled.img`
-    width: 60%;
-
+    width: 200px;
     transition: all 0.4s ease;
+
+    &:nth-child(odd) {
+        width: 150px;
+    }
 
     &:hover {
         cursor: pointer;
