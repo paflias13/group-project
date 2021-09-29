@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js"
 import styled from "styled-components"
 import PaymentForm from "./PaymentForm"
 
-const PUBLIC_KEY = 'pk_test_51JddNpDwqxNQKhKw4cuD5VS72INsMEJ6pQhHRXsBpQeOihwoqRRdfDjvLx6fH8wKhpzrAKCyQix45QlmiLendhwF00kzslGeXZ '
+const PUBLIC_KEY = 'pk_test_51JefzZEZIPXBEfAYBIwC4YLrbyiGtOO5WN9VPZlh6IH8XcqGhkCq3Ft0gMlOQ9xILFWLu9Dd6eYD9kQoH4eoSnFX00g5xm3l6Q '
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
@@ -13,6 +13,6 @@ const StripeContainer = () => {
             <PaymentForm />
         </Elements>
     )
-}
 
+}
 export default StripeContainer

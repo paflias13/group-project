@@ -198,7 +198,17 @@ const LinksForActions = styled.div`
 `
 
 const links = {
-    marginBottom: '10px'
+    marginBottom: '10px',
+    color: '#3f8079'
 }
+
+// .footerLinks{
+//     margin-left: 10px;
+//     color: #3f8079;
+// }
+
+// .footerLinks:hover {
+//     color: #7da3a0;
+// }
 
 export default Login

@@ -65,7 +65,7 @@ const Wrapper = styled.div`
 `
 
 const Image = styled.img`
-    width: 200px;
+    width: 160px;
     transition: all 0.4s ease;
 
     &:nth-child(odd) {

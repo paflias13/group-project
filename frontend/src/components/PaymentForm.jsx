@@ -10,7 +10,7 @@ const CARD_OPTIONS = {
     style: {
         base: {
             iconColor: "#c4f0ff",
-            color: "#fff",
+            color: "#000000",
             fontWeight: 500,
             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
             fontSize: "16px",
@@ -40,7 +40,7 @@ const PaymentForm = () => {
         if (!error) {
             try {
                 const { id } = paymentMethod
-                const response = await axios.post("http://localhost:8000/wines", {
+                const response = await axios.post("http://localhost:5000", {
                     amount: 1000,
                     id
                 })

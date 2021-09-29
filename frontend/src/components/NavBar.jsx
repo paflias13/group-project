@@ -125,6 +125,9 @@ export default function NavBar() {
                           <ListItem className="listItems">
                             <Link onClick={toggleDrawer(anchor, false)} to="/add">ADD</Link>
                           </ListItem>
+                          <ListItem className="listItems">
+                            <Link onClick={toggleDrawer(anchor, false)} to="/history">HISTORY</Link>
+                          </ListItem>
                         </>
                       )
                     }

@@ -83,13 +83,13 @@ const RegistrationForm = () => {
                         <Input onChange={(e) => handle(e)} value={data.city} id="city" type="text" placeholder="City" />
                     </InputInfo>
                     <InputInfo>
-                        {/* <Input onChange={(e) => handle(e)} type="text"  id="country" /> */}
-                        {/* <Select>
+                        {/* <Input onChange={(e) => handle(e)} type="text" id="country" /> */}
+                        <Select>
                             <Option disabled>Countries</Option>
                             <Option onChange={(e) => handle(e)} value={data.country}>Greece</Option>
                             <Option onChange={(e) => handle(e)} value={data.country}>Italy</Option>
                             <Option onChange={(e) => handle(e)} value={data.country}>Spain</Option>
-                        </Select> */}
+                        </Select>
                     </InputInfo>
                 </FirstGroup>
                 <Button value='sign up'>

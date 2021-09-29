@@ -130,7 +130,7 @@ const Product = () => {
                                     onClick={setModalIsOpenToTrue}
                                 ></Button>
                             ) : (
-                                <Link to='/registration'>you want something? welcome with us!</Link>
+                                <Link className='link messegeForYou' to='/registration'>you want something? welcome with us!</Link>
                             )
                             }
                             {/* <Button onClick={handleDelete} className="actionButton" value={value} ></Button> */}

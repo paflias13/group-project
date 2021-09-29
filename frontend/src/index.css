@@ -107,3 +107,10 @@ ul{
 .menu{
     height: 100vh;
 }
+
+.messegeForYou {
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: #4e4540;
+    cursor: pointer;
+}

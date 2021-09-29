@@ -7,6 +7,7 @@ import { Context } from "../../context/Context";
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { useEffect } from 'react'
+import Options from '../../components/Options'
 
 const PF = "http://localhost:5000/vineyards/users/updateMe"
 // const URL = "http://localhost:5000/vineyards/users/"
@@ -135,11 +136,6 @@ const Settings = () => {
                             />
                         </InputInfo>
                         <InputInfo>
-                            <Input
-                                onChange={(e) => setCountry(e.target.value)}
-                                type="text"
-                                placeholder={user.country}
-                            />
                             {/* <Select>
                             <Option disabled>Countries</Option>
                             <Option onChange={(e) => handle(e)} value={data.country}>Greece</Option>
@@ -193,8 +189,14 @@ const Settings = () => {
                                 placeholder={user.dateOfBirth}
                             /> */}
                         </InputInfo>
+                        <Input
+                            onChange={(e) => setCountry(e.target.value)}
+                            type="text"
+                            placeholder={user.country}
+                        />
                     </SecondGroup>
                 </Form>
+                <Options />
             </Container>
         </BackImage>
     )

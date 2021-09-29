@@ -15,6 +15,7 @@ import React, { Component, useContext } from 'react';
 import About from './pages/about/About';
 import { Context } from './context/Context';
 import Settings from './pages/settings/Settings';
+import History from './admin/History';
 
 
 
@@ -54,10 +55,13 @@ const App = () => {
             {user ? <Settings /> : <Home />}
           </Route>
           <Route path="/forgotPassword" >
-            <ForgotPassword />
+            {user ? <ForgotPassword /> : <Home />}
           </Route>
           <Route path="/about" >
             <About />
+          </Route>
+          <Route path="/history" >
+            {user?.role === 'admin' ? <History /> : <Home />}
           </Route>
           <Route path="/*" >
             <NotFound />

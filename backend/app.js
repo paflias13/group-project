@@ -1,4 +1,8 @@
 require('module-alias/register')
+require('module-alias/register')
+require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
+const bodyParser = require("body-parser")
 
 const express = require('express')
 const morgan = require('morgan')
@@ -15,6 +19,33 @@ const xss = require('xss-clean')
 const cors = require('cors')
 const userRouter = require('@routes/user.routes')
 const productRouter = require('@routes/product.routes')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
+app.post("/", cors(), async (req, res) => {
+	let { amount, id } = req.body
+	try {
+		const payment = await stripe.paymentIntents.create({
+			amount,
+			currency: "USD",
+			description: "Wines",
+			payment_method: id,
+			confirm: true
+		})
+		console.log("Payment", payment)
+		res.json({
+			message: "Payment successful",
+			success: true
+		})
+	} catch (error) {
+		console.log("Error", error)
+		res.json({
+			message: "Payment failed",
+			success: false
+		})
+	}
+})
 
 app.use(helmet())
 if (process.env.NODE_ENV === 'development') {

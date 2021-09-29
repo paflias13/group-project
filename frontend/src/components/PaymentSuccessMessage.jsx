@@ -3,7 +3,7 @@ import styled from "styled-components"
 const PaymentSuccessMessage = () => {
     return (
         <WrapperMessage>
-            <Message>Your payment has been received</Message>
+            <Message>Keep calm and pour on...</Message>
         </WrapperMessage>
     )
 }
@@ -14,7 +14,6 @@ const WrapperMessage = styled.div`
     justify-content: center;
     width: 30%;
     margin: 0 auto;
-    background-color: brown;
 `
 
 const Message = styled.p``
