@@ -30,7 +30,7 @@ const {
 	restrictTo
 } = require('@middleware/role.middleware')
 
-const { updateOne } = require('@controllers/globalCrud.controller')
+const { createOne } = require('@controllers/globalCrud.controller')
 
 
 const router = express.Router()
@@ -46,7 +46,7 @@ router.post('/resetPassword/:token', resetPassword)
 
 router.patch('/updateMyPassword', updatePassword)
 router.get('/me', getMe, getUser)
-router.patch('/updateMe', updateOne)
+router.patch('/updateMe', updateMe)
 router.delete('/deleteMe', deleteMe)
 
 // router.use(restrictTo('admin')) // mono o admin exei dikaiwmata

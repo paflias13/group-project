@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-para: #777570 ;
+    --color-brown: #A36833;
+    --color-gray: rgba(128, 128, 128, 0.543);
+    --color-darkGreen: rgb(94, 124, 117);
+    --color-title: #4e4540;
+    --color-date: #3f8079;
+}
+
+html, body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    overflow-x: hidden;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+.arrow {
+    position: absolute;
+    left: 30px;
+    top: 80px;
+    cursor: pointer;
+    color: #000;
+}
+
+.actionButton {
+    margin-left: 20px;
+    background-color: #3f8079;
+}
+
+.StripeElement {
+	width: 100%;
+	padding: 11px 15px 11px 0;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+    background-color: white !important;
+    opacity: 0.6 !important;
+}
+
+.css-h4y409-MuiList-root{
+    height: 100vh !important;
+    overflow-x: hidden;
+}
+
+.footerLinks{
+    margin-left: 10px;
+    color: #3f8079;
+}
+
+.footerLinks:hover {
+    color: #7da3a0;
+}
+
+
+.listItems > a {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    text-decoration: none;
+    font-size: 2em;
+    font-family: "Requiem",serif;
+    opacity: 0.8;
+    color: #b4b3af;
+    overflow-y: hidden;
+    font-weight: 400;
+}
+.listItems > a:hover{
+    color: #d4d0c3;
+}
+
+.logoNavBar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+ul{
+    background-color: #4e4540;
+    height: 100vh;
+}
+.menu{
+    height: 100vh;
+}

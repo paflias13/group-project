@@ -12,15 +12,15 @@ address		mobile phone
 */
 
 const userSchema = new mongoose.Schema({
-	// userName: {
-	// 	type: String,
-	// 	required: [true, 'Please provide a username.'],
-	// 	unique: true,
-	// 	trim: true,
-	// 	lowercase: true,
-	// 	minLength: [2, 'At least two characters are valid.'],
-	// 	maxLength: [25, 'Maximum 25 characters are allowed'],
-	// },
+	userName: {
+		type: String,
+		required: [true, 'Please provide a username.'],
+		unique: true,
+		trim: true,
+		lowercase: true,
+		minLength: [2, 'At least two characters are valid.'],
+		maxLength: [25, 'Maximum 25 characters are allowed'],
+	},
 	firstName: {
 		type: String,
 		uppercase: true,
@@ -38,10 +38,10 @@ const userSchema = new mongoose.Schema({
 		maxLength: [25, 'Maximum 25 characters are allowed'],
 		validate: [validator.isAlpha, 'Only A-Z characters are allowed.']
 	},
-	dateOfBirth: {
-		type: Date,
-		validate: [validator.isDate, 'Please provide your date of birth']
-	},
+	// dateOfBirth: {
+	// 	type: Date,
+	// 	validate: [validator.isDate, 'Please provide your date of birth']
+	// },
 	email: {
 		type: String,
 		required: [true, 'Please provide your email.'],
