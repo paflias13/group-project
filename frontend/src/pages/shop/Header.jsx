@@ -20,7 +20,7 @@ const Header = () => {
                 <Select>
                     <Option disabled value=""></Option>
                     <Option value="">a bit of everything</Option>
-                    <Option value="">bold & spicy</Option>
+                    <Option value="" >bold & spicy</Option>
                     <Option value="">fun & flirty</Option>
                     <Option value="">crisp & fruity</Option>
                     <Option value="">cozy & warm</Option>
